@@ -1,0 +1,15 @@
+version: 1
+
+automations:
+  - id: stripe-sync
+    name: Stripe Customer Sync
+    description: Syncs Stripe customers into the production database.
+    owner: payments
+    schedule: "*/5 * * * *"
+    environment: production
+
+  - id: nightly-backup
+    name: Nightly Database Backup
+    owner: infrastructure
+    schedule: "0 2 * * *"
+    environment: production

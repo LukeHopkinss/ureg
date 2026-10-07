@@ -1,0 +1,14 @@
+services:
+  postgres:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: ureg
+      POSTGRES_PASSWORD: ureg
+      POSTGRES_DB: ureg
+    ports:
+      - "5432:5432"
+    volumes:
+      - ureg-pg:/var/lib/postgresql/data
+
+volumes:
+  ureg-pg:

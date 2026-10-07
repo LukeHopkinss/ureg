@@ -1,0 +1,33 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "ureg",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-10-01",
+  "compatibility_flags": ["nodejs_compat"],
+
+  // The dashboard is served as static assets by this same Worker.
+  // API routes run the Worker first; everything else falls back to the SPA.
+  "assets": {
+    "directory": "../web/dist",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": ["/v1/*"],
+  },
+
+  // Neon PostgreSQL via Hyperdrive. Replace `id` after running:
+  //   npx wrangler hyperdrive create ureg-db --connection-string="$DATABASE_URL"
+  // Locally, wrangler dev uses localConnectionString (docker-compose Postgres).
+  "hyperdrive": [
+    {
+      "binding": "HYPERDRIVE",
+      "id": "00000000000000000000000000000000",
+      "localConnectionString": "postgres://ureg:ureg@localhost:5432/ureg",
+    },
+  ],
+
+  // Reconciliation runs every 5 minutes (docs/plan.md §20).
+  "triggers": {
+    "crons": ["*/5 * * * *"],
+  },
+
+  "observability": { "enabled": true },
+}

@@ -1,0 +1,22 @@
+{
+  "name": "@ureg/worker",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "npm run build -w @ureg/web && wrangler deploy",
+    "typecheck": "tsc -p tsconfig.json",
+    "cf-typegen": "wrangler types"
+  },
+  "dependencies": {
+    "@ureg/db": "*",
+    "@ureg/shared": "*",
+    "drizzle-orm": "^0.45.3",
+    "hono": "^4.13.13"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20261007.1",
+    "wrangler": "^4.148.0"
+  }
+}
