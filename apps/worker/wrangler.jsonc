@@ -19,7 +19,7 @@
   "hyperdrive": [
     {
       "binding": "HYPERDRIVE",
-      "id": "00000000000000000000000000000000",
+      "id": "485d54f088a141718241d558280315ea",
       "localConnectionString": "postgres://ureg:ureg@localhost:5432/ureg",
     },
   ],
