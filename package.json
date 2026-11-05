@@ -1,7 +1,7 @@
 {
   "name": "ureg",
   "private": true,
-  "description": "UReg — a universal registry for everything your organization runs automatically.",
+  "description": "UReg \u2014 a universal registry for everything your organization runs automatically.",
   "type": "module",
   "packageManager": "npm@11.19.0",
   "engines": {
@@ -27,6 +27,8 @@
     "db:down": "docker compose down",
     "db:generate": "npm run generate -w @ureg/db",
     "db:migrate": "npm run migrate -w @ureg/db",
+    "db:migrate:prod": "npm run migrate:prod -w @ureg/db",
+    "db:studio": "npm run studio -w @ureg/db",
     "ureg": "tsx packages/cli/src/index.ts"
   },
   "devDependencies": {

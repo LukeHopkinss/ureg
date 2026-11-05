@@ -9,8 +9,9 @@
   "scripts": {
     "typecheck": "tsc -p tsconfig.json",
     "generate": "drizzle-kit generate",
-    "migrate": "drizzle-kit migrate",
-    "studio": "drizzle-kit studio"
+    "migrate": "tsx scripts/migrate.ts",
+    "studio": "drizzle-kit studio",
+    "migrate:prod": "tsx scripts/migrate.ts --production"
   },
   "dependencies": {
     "@ureg/shared": "*",
@@ -18,6 +19,7 @@
     "postgres": "^3.4.9"
   },
   "devDependencies": {
-    "drizzle-kit": "^0.31.11"
+    "drizzle-kit": "^0.31.11",
+    "tsx": "^4.23.15"
   }
 }

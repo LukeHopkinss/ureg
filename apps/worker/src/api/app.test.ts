@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { app } from "./app.js";
 
 describe("api", () => {
@@ -11,5 +11,17 @@ describe("api", () => {
   it("returns JSON 404 for unknown routes", async () => {
     const res = await app.request("/v1/nope");
     expect(res.status).toBe(404);
+  });
+
+  it("reports an unreachable database without leaking details", async () => {
+    const error = vi.spyOn(console, "error").mockImplementation(() => {});
+    try {
+      // No HYPERDRIVE binding: stands in for any failure reaching Postgres.
+      const res = await app.request("/v1/health/db", {}, {});
+      expect(res.status).toBe(500);
+      expect(await res.json()).toEqual({ error: { code: "INTERNAL" } });
+    } finally {
+      error.mockRestore();
+    }
   });
 });

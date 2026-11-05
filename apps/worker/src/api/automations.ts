@@ -1,5 +1,5 @@
 import { Hono } from "hono";
-import type { Env } from "../env.js";
+import type { AppEnv } from "../db.js";
 
 /**
  * Automation registry routes (docs/plan.md §17). Implemented in Phase 1.
@@ -7,7 +7,7 @@ import type { Env } from "../env.js";
  * Every handler must resolve the caller's organization from auth and pass it
  * to the repository layer — never query tenant data without org scope.
  */
-export const automationsRoutes = new Hono<{ Bindings: Env }>();
+export const automationsRoutes = new Hono<AppEnv>();
 
 const notImplemented = { error: { code: "NOT_IMPLEMENTED" } } as const;
 
